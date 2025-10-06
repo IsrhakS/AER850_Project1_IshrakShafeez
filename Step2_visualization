@@ -1,0 +1,18 @@
+"""
+AER850 Project 1 - Step 2: Data Visualization
+"""
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import pandas as pd
+
+# Loads the data
+data = pd.read_csv("Project 1 data.csv")
+
+# Produces a 3D scatter plot
+plot = plt.figure()
+axis3d = plot.add_subplot(111, projection='3d')
+axis3d.scatter(data['X'], data['Y'], data['Z'])
+axis3d.view_init(30, 185)   # Adjust viewing angle
+plt.title("3D Scatter Plot of Coordinates")
+plt.show()
