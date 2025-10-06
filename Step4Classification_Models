@@ -1,0 +1,55 @@
+"""
+AER850 Project 1 - Step 4: Classification Model Engineering
+
+"""
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+
+data = pd.read_csv("Project 1 data.csv")
+
+
+
+# Define features (X, Y, Z) and target (step)
+features = data[['X', 'Y', 'Z']]
+labels = data['step']
+
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    features, labels, test_size=0.25, random_state=15
+)
+
+#  Model 1: Logistic Regression 
+log_model = LogisticRegression(max_iter=300)
+log_model.fit(X_train, y_train)
+log_preds = log_model.predict(X_test)
+
+print("=== Logistic Regression Results ===")
+print("Accuracy Score:", accuracy_score(y_test, log_preds))
+print("Confusion Matrix:\n", confusion_matrix(y_test, log_preds))
+print("Report:\n", classification_report(y_test, log_preds))
+
+# Model 2: Support Vector Machine 
+svm_model = SVC(kernel='rbf')
+svm_model.fit(X_train, y_train)
+svm_preds = svm_model.predict(X_test)
+
+print("\n=== Support Vector Machine Results ===")
+print("Accuracy Score:", accuracy_score(y_test, svm_preds))
+print("Confusion Matrix:\n", confusion_matrix(y_test, svm_preds))
+print("Report:\n", classification_report(y_test, svm_preds))
+
+# Model 3: Random Forest Classifier 
+rf_model = RandomForestClassifier(n_estimators=150, random_state=15, max_depth=10)
+rf_model.fit(X_train, y_train)
+rf_preds = rf_model.predict(X_test)
+
+print("\n=== Random Forest Results ===")
+print("Accuracy Score:", accuracy_score(y_test, rf_preds))
+print("Confusion Matrix:\n", confusion_matrix(y_test, rf_preds))
+print("Report:\n", classification_report(y_test, rf_preds))
