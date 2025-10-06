@@ -1,0 +1,22 @@
+""
+AER850 Project 1 - Step 6: Model Evaluation
+
+"""
+
+import joblib
+import numpy as np
+
+joblib.dump(rf_model, "random_forest_model.joblib")
+rf_loaded_model = joblib.load("random_forest_model.joblib")
+
+test_coords = np.array([
+    [9.375, 3.0625, 1.51],
+    [6.995, 5.125, 0.3875],
+    [0, 3.0625, 1.93],
+    [9.4, 3, 1.8],
+    [9.4, 3, 1.3]
+])
+
+for i, coord in enumerate(test_coords, start=1):
+    prediction = rf_loaded_model.predict(coord.reshape(1, -1))
+    print(f"Test {i} | Coordinates: {coord} -> Predicted Step: {prediction}"
