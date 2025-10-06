@@ -7,13 +7,13 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Load data
+# Loads the data
 data = pd.read_csv("Project 1 data.csv")
 
-# Compute correlation matrix
+# Computes the correlation matrix
 corr_values = data.corr(method='pearson')
 
-# Plot heatmap
+# Plots the heatmap
 plt.figure(figsize=(9, 7))
 sns.heatmap(corr_values, annot=True, cmap='viridis', fmt=".2f", linewidths=0.6)
 plt.title("Pearson Feature Correlation")
