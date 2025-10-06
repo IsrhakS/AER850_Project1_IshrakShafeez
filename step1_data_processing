@@ -1,0 +1,11 @@
+AER850 Project 1 - Step 1: Data Processing
+
+import pandas as pd
+
+# Loads the dataset into dataframe
+data = pd.read_csv("Project 1 data.csv")
+
+# Displays all the basic info
+print("DataFrame Shape:", data.shape)
+print("Columns:", data.columns.tolist())
+print(data.head())
